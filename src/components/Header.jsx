@@ -1,4 +1,5 @@
 import React from 'react';
+import './Header.css';
 
 function Header({ openModal, filter, setFilter }) {
   const handleFilterChange = (e) => {
@@ -7,17 +8,19 @@ function Header({ openModal, filter, setFilter }) {
 
   return (
     <div className="header">
-      <h1 className="title">TODO LIST</h1>
-      <button className="add-task-button" onClick={openModal}>
-        Add Task
-      </button>
-      <div className="filter-container">
-        <select value={filter} onChange={handleFilterChange}>
-          <option value="all">All</option>
-          <option value="incomplete">Incomplete</option>
-          <option value="completed">Completed</option>
-        </select>
+      <div className="title-container">
+        <h1 className="title">TODO LIST</h1>
       </div>
+      <div className="filter-container">
+        <button className="add-task-button" onClick={openModal}>
+            Add Task
+        </button>
+        <select className="filter-select" value={filter} onChange={handleFilterChange}>
+            <option value="all">ALL</option>
+            <option value="incomplete">INCOMPLETED</option>
+            <option value="completed">COMPLETED</option>
+          </select>
+        </div>
     </div>
   );
 }

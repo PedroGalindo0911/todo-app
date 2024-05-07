@@ -1,0 +1,61 @@
+
+.header {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    background-color: #f8f8ff;
+    margin: 0;
+  }
+  
+  .title-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem; 
+  }
+  
+  .title {
+    font-size: 32px; 
+    font-weight:bold;
+    color: #646681; 
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    
+  }
+  
+  .filter-container {
+    flex: 1; 
+    
+  }
+
+  .filter-select {
+    padding: 8px 12px;
+    font-size: 14px;
+    background-color: #cccdde; 
+    color: #87888e; 
+    border: none;
+    border-radius: 5px; 
+    outline: none; 
+    transition: background-color 0.3s ease;
+    margin-left: 40rem;
+  }
+
+  .filter-select:hover,
+.filter-select:focus {
+  background-color: #ccc; 
+}
+  
+.add-task-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #646ff0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+.add-task-button:hover {
+    background-color: #483d8b;
+  }
+  
