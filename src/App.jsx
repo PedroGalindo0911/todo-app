@@ -4,8 +4,16 @@ import TaskList from './components/TaskList';
 import { tasksData } from './Task';
 
 function App() {
+  const [tasks, setTasks] = useState(tasksData);
+  const [filter, setFilter] = useState('all');
   const [showModal, setShowModal] = useState(false);
-  const [filter, setFilter] = useState('all'); 
+
+  const handleTaskStatusChange = (taskId, newStatus) => {
+    const updatedTasks = tasks.map((task) =>
+      task.id === taskId ? { ...task, status: newStatus } : task
+    );
+    setTasks(updatedTasks);
+  };
 
   const openModal = () => {
     setShowModal(true);
@@ -15,10 +23,22 @@ function App() {
     setShowModal(false);
   };
 
+  const handleAddTask = (newTask) => {
+    setTasks([...tasks, newTask]);
+    setShowModal(false);
+  };
+
   return (
     <div className="app">
-      <Header  filter={filter} setFilter={setFilter} />
-      <TaskList tasks={tasksData} filter={filter} />
+      <Header openModal={openModal} filter={filter} setFilter={setFilter} />
+      {showModal && (
+        <Modal closeModal={closeModal} handleAddTask={handleAddTask} />
+      )}
+      <TaskList
+        tasks={tasks}
+        filter={filter}
+        handleTaskStatusChange={handleTaskStatusChange}
+      />
     </div>
   );
 }
