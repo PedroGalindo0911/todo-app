@@ -2,7 +2,7 @@ import React from 'react';
 import TaskItem from './TaskItem';
 import './TaskList.css';
 
-function TaskList({ tasks, filter, handleTaskStatusChange }) {
+function TaskList({ tasks, filter, handleTaskStatusChange, handleEditTask, handleDeleteTask }) {
   const handleCheckboxChange = (taskId, newStatus) => {
     handleTaskStatusChange(taskId, newStatus); 
   };
@@ -21,11 +21,12 @@ function TaskList({ tasks, filter, handleTaskStatusChange }) {
     <div className="task-list">
       {filteredTasks.map((task) => (
         <TaskItem
-          key={task.id}
-          task={task}
-          handleCheckboxChange={handleCheckboxChange} 
-          date={task.date}
-        />
+        key={task.id}
+        task={task}
+        handleCheckboxChange={handleTaskStatusChange}
+        handleEditTask={handleEditTask}
+        handleDeleteTask={handleDeleteTask}
+      />
       ))}
     </div>
   );
