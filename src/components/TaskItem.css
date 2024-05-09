@@ -40,10 +40,11 @@
     height: 20px;
     border-radius: 4px;
     cursor: pointer;
+    background-color: #007bff !important; 
   }
   
   .checkbox:checked {
-    background-color: #007bff; 
+    background-color: #007bff !important; 
     text-decoration: line-through;
   }
 

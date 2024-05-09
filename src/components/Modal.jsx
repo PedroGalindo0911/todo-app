@@ -1,35 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import './Modal.css';
 
-function Modal({ closeModal, handleAddTask, editingTask }) {
-  const initialTitle = editingTask ? editingTask.title : '';
-  const initialStatus = editingTask ? editingTask.status : 'incomplete';
-
-  const [title, setTitle] = useState(initialTitle);
-  const [status, setStatus] = useState(initialStatus);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (title.trim() === '') {
-      alert('Please enter a task title.');
-      return;
-    }
-
-    const newTask = {
-      id: editingTask ? editingTask.id : Math.floor(Math.random() * 1000) + 1,
-      title: title,
-      status: status,
-      date: editingTask ? editingTask.date : new Date().toLocaleString(),
-    };
-
-    handleAddTask(newTask);
-    closeModal();
-  };
+function Modal({ closeModal, handleAddTask, handleEditTask, editingTask }) {
+  const [title, setTitle] = useState('');
+  const [status, setStatus] = useState('incomplete');
 
   useEffect(() => {
-    setTitle(initialTitle);
-    setStatus(initialStatus);
+    if (editingTask) {
+      setTitle(editingTask.title);
+      setStatus(editingTask.status);
+    }
   }, [editingTask]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const taskData = {
+      title: title,
+      status: status,
+      date: new Date().toISOString(),
+    };
+
+    try {
+      if (editingTask) {
+        // Si estamos editando una tarea existente
+        const updatedTask = {
+          ...editingTask,
+          title: title,
+          status: status,
+        };
+        await handleEditTask(updatedTask);
+      } else {
+        // Si estamos agregando una nueva tarea
+        await handleAddTask(taskData);
+      }
+
+      closeModal(); // Cierra el modal después de agregar o editar
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
   return (
     <div className="modal-container">

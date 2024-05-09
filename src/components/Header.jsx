@@ -13,14 +13,14 @@ function Header({ openModal, filter, setFilter }) {
       </div>
       <div className="filter-container">
         <button className="add-task-button" onClick={openModal}>
-            Add Task
+          Add Task
         </button>
         <select className="filter-select" value={filter} onChange={handleFilterChange}>
-            <option value="all">ALL</option>
-            <option value="incomplete">INCOMPLETED</option>
-            <option value="completed">COMPLETED</option>
-          </select>
-        </div>
+          <option value="all">ALL</option>
+          <option value="incomplete">INCOMPLETED</option>
+          <option value="completed">COMPLETED</option>
+        </select>
+      </div>
     </div>
   );
 }
