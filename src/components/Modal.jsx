@@ -23,7 +23,6 @@ function Modal({ closeModal, handleAddTask, handleEditTask, editingTask }) {
 
     try {
       if (editingTask) {
-        // Si estamos editando una tarea existente
         const updatedTask = {
           ...editingTask,
           title: title,
@@ -31,11 +30,10 @@ function Modal({ closeModal, handleAddTask, handleEditTask, editingTask }) {
         };
         await handleEditTask(updatedTask);
       } else {
-        // Si estamos agregando una nueva tarea
         await handleAddTask(taskData);
       }
 
-      closeModal(); // Cierra el modal después de agregar o editar
+      closeModal(); 
     } catch (error) {
       console.error('Error:', error);
     }

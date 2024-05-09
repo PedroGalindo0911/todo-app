@@ -3,14 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import './TaskItem.css';
 
-function TaskItem({ task, handleCheckboxChange, handleEditTask, handleDeleteTask }) {
+function TaskItem({ task,  handleEditTask, handleDeleteTask }) {
   const { id, title, status, date } = task;
   const isChecked = status === 'completed';
-
-  const handleChange = () => {
-    const updatedStatus = isChecked ? 'incomplete' : 'completed';
-    handleCheckboxChange(id, updatedStatus);
-  };
 
   const handleEdit = () => {
     handleEditTask(task); 
@@ -26,7 +21,6 @@ function TaskItem({ task, handleCheckboxChange, handleEditTask, handleDeleteTask
         <input
           type="checkbox"
           checked={isChecked}
-          onChange={handleChange}
           className="checkbox"
           disabled
         />

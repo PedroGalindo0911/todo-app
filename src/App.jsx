@@ -8,7 +8,7 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const [filter, setFilter] = useState('all');
   const [showModal, setShowModal] = useState(false);
-  const [editingTask, setEditingTask] = useState(null); // Estado para la tarea en edición
+  const [editingTask, setEditingTask] = useState(null);
 
   useEffect(() => {
     fetchTasks();
@@ -20,15 +20,6 @@ function App() {
       setTasks(response.data);
     } catch (error) {
       console.error('Error fetching tasks:', error);
-    }
-  };
-
-  const handleTaskStatusChange = async (taskId, newStatus) => {
-    try {
-      await axios.put(`http://localhost:8000/todos/tasks/${taskId}/`, { status: newStatus });
-      fetchTasks(); // Actualizar la lista de tareas después de la actualización
-    } catch (error) {
-      console.error('Error updating task:', error);
     }
   };
 
@@ -65,7 +56,7 @@ function App() {
   const handleDeleteTask = async (taskId) => {
     try {
       await axios.delete(`http://localhost:8000/todos/tasks/${taskId}/`);
-      fetchTasks(); // Actualizar la lista de tareas después de la eliminación
+      fetchTasks();
     } catch (error) {
       console.error('Error deleting task:', error);
     }
@@ -73,7 +64,7 @@ function App() {
 
   const closeModal = () => {
     setShowModal(false);
-    setEditingTask(null); // Limpiar la tarea en edición al cerrar el modal
+    setEditingTask(null);
   };
 
   return (
@@ -91,7 +82,7 @@ function App() {
         tasks={tasks}
         filter={filter}
         openAddModal={openModalForAdd}
-        handleEditTask={openModalForEdit} // Abrir modal para editar al hacer clic en editar
+        handleEditTask={openModalForEdit} 
         handleDeleteTask={handleDeleteTask}
       />
     </div>
